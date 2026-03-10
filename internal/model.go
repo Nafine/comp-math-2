@@ -16,13 +16,6 @@ type NonlinearEquation struct {
 	B   float64
 }
 
-type NonlinearSystem struct {
-	Functions []Function
-	Eps       float64
-	X0        float64
-	Y0        float64
-}
-
 func (eq NonlinearEquation) RootExists() bool {
 	return eq.F(eq.A)*eq.F(eq.B) < 0 && derivate.DerivAt(eq.F, eq.A)*derivate.DerivAt(eq.F, eq.B) > 0
 }
