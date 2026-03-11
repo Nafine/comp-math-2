@@ -8,7 +8,7 @@ import (
 )
 
 func SolveSystem(eq numeric.NonlinearSystem) (numeric.Solution, error) {
-	coords := numeric.Coordinates{X: eq.X0, Y: eq.Y0}
+	coords := numeric.Coordinates{X: eq.StartCoordinates.X, Y: eq.StartCoordinates.Y}
 	maxIter := 1000
 
 	for iter := 0; iter < maxIter; iter++ {

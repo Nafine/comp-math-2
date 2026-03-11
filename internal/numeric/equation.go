@@ -20,7 +20,7 @@ type system struct {
 }
 
 var systems = map[string]system{
-	"cos(x-1) + y = 0.5\nx - cos(y) = 3": {
+	"cos(x-1) + y = 0.5 & x - cos(y) = 3": {
 		f1: func(coordinates Coordinates) float64 {
 			return math.Cos(coordinates.X) + coordinates.Y - 0.5
 		},
@@ -28,7 +28,7 @@ var systems = map[string]system{
 			return coordinates.X - math.Cos(coordinates.Y) - 3
 		},
 	},
-	"sin(x+y) = 1.5x - 0.1\nx^2+2y^2=1": {
+	"sin(x+y) = 1.5x - 0.1 & x^2+2y^2=1": {
 		f1: func(coordinates Coordinates) float64 {
 			return math.Sin(coordinates.X+coordinates.Y) - 1.5*coordinates.X + 0.1
 		},
@@ -48,8 +48,8 @@ func GetSingleEquations() []string {
 
 func GetSystems() []string {
 	return []string{
-		"cos(x-1) + y = 0.5\nx - cos(y) = 3",
-		"sin(x+y) = 1.5x - 0.1\nx^2+2y^2=1",
+		"cos(x-1) + y = 0.5 & x - cos(y) = 3",
+		"sin(x+y) = 1.5x - 0.1 & x^2+2y^2=1",
 	}
 }
 

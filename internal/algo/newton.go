@@ -3,7 +3,6 @@ package algo
 import (
 	"comp-math-2/internal/derivate"
 	"comp-math-2/internal/numeric"
-	"fmt"
 	"math"
 )
 
@@ -22,9 +21,6 @@ func SolveNewton(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 	for {
 		iterations++
 		x = x - f(x)/deriv(x)
-
-		fmt.Printf("%d & %.3f &  %.3f & %.3f & %.3f & %.3f\\\\ \n\\hline\n",
-			iterations, xPrev, f(xPrev), derivate.DerivAt(f, xPrev), x, math.Abs(x-xPrev))
 
 		if math.Abs(x-xPrev) <= eps {
 			break

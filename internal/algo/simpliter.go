@@ -44,9 +44,6 @@ func SolveSimpleIteration(eq numeric.NonlinearEquation) (numeric.Solution, error
 		xPrev := x
 		x = phi(x)
 
-		fmt.Printf("%d & %.3f &  %.3f & %.3f & %.3f\\\\ \n\\hline\n",
-			iterations, xPrev, x, f(x), math.Abs(x-xPrev))
-
 		if math.Abs(x-xPrev) <= eq.Eps {
 			break
 		}

@@ -16,11 +16,10 @@ type NonlinearEquation struct {
 }
 
 type NonlinearSystem struct {
-	F1  func(Coordinates) float64
-	F2  func(Coordinates) float64
-	X0  float64
-	Y0  float64
-	Eps float64
+	F1               func(Coordinates) float64
+	F2               func(Coordinates) float64
+	StartCoordinates Coordinates
+	Eps              float64
 }
 
 type Coordinates struct {
