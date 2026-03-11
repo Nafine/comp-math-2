@@ -1,13 +1,13 @@
 package algo
 
 import (
-	model "comp-math-2/internal"
 	"comp-math-2/internal/derivate"
+	"comp-math-2/internal/numeric"
 	"fmt"
 	"math"
 )
 
-func SolveSimpleIteration(eq model.NonlinearEquation) (model.Solution, error) {
+func SolveSimpleIteration(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 	steps := 100
 	maxIters := 50_000
 
@@ -27,7 +27,7 @@ func SolveSimpleIteration(eq model.NonlinearEquation) (model.Solution, error) {
 
 	for i := 1; i <= steps; i++ {
 		if math.Abs(derivate.DerivAt(phi, eq.A+(eq.B-eq.A)/float64(steps)*float64(i))) >= 1 {
-			return model.Solution{},
+			return numeric.Solution{},
 				fmt.Errorf("не выполнено условие сходимости метода |phi'(x)| < 1 при x = %f", x)
 		}
 	}
@@ -38,7 +38,7 @@ func SolveSimpleIteration(eq model.NonlinearEquation) (model.Solution, error) {
 		iterations++
 
 		if iterations == maxIters {
-			return model.Solution{}, fmt.Errorf("достигнуто %d итераций и ответ вы уже не получите", iterations)
+			return numeric.Solution{}, fmt.Errorf("достигнуто %d итераций и ответ вы уже не получите", iterations)
 		}
 
 		xPrev := x
@@ -52,7 +52,7 @@ func SolveSimpleIteration(eq model.NonlinearEquation) (model.Solution, error) {
 		}
 	}
 
-	return model.Solution{
+	return numeric.Solution{
 		X:          x,
 		Y:          f(x),
 		Iterations: iterations,

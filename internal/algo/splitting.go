@@ -1,11 +1,11 @@
 package algo
 
 import (
-	model "comp-math-2/internal"
+	"comp-math-2/internal/numeric"
 	"math"
 )
 
-func SolveSplitting(eq model.NonlinearEquation) (model.Solution, error) {
+func SolveSplitting(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 	f := eq.F
 	a := eq.A
 	b := eq.B
@@ -28,7 +28,7 @@ func SolveSplitting(eq model.NonlinearEquation) (model.Solution, error) {
 		prevX = temp
 	}
 
-	return model.Solution{
+	return numeric.Solution{
 		X:          x,
 		Y:          f(x),
 		Iterations: iterations,

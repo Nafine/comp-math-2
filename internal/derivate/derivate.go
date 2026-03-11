@@ -1,6 +1,8 @@
 package derivate
 
-import model "comp-math-2/internal"
+import (
+	"comp-math-2/internal/numeric"
+)
 
 const h = 1e-5
 
@@ -14,24 +16,24 @@ func Derivate(f func(float64) float64) func(float64) float64 {
 	}
 }
 
-func DerivXAt(f func(model.Coordinates) float64, coords model.Coordinates) float64 {
-	return (f(model.Coordinates{X: coords.X + h, Y: coords.Y}) -
-		f(model.Coordinates{X: coords.X - h, Y: coords.Y})) / (2 * h)
+func DerivXAt(f func(numeric.Coordinates) float64, coords numeric.Coordinates) float64 {
+	return (f(numeric.Coordinates{X: coords.X + h, Y: coords.Y}) -
+		f(numeric.Coordinates{X: coords.X - h, Y: coords.Y})) / (2 * h)
 }
 
-func DerivYAt(f func(model.Coordinates) float64, coords model.Coordinates) float64 {
-	return (f(model.Coordinates{X: coords.X, Y: coords.Y + h}) -
-		f(model.Coordinates{X: coords.X, Y: coords.Y - h})) / (2 * h)
+func DerivYAt(f func(numeric.Coordinates) float64, coords numeric.Coordinates) float64 {
+	return (f(numeric.Coordinates{X: coords.X, Y: coords.Y + h}) -
+		f(numeric.Coordinates{X: coords.X, Y: coords.Y - h})) / (2 * h)
 }
 
-func DerivateX(f func(coords model.Coordinates) float64) func(model.Coordinates) float64 {
-	return func(coords model.Coordinates) float64 {
+func DerivateX(f func(coords numeric.Coordinates) float64) func(numeric.Coordinates) float64 {
+	return func(coords numeric.Coordinates) float64 {
 		return DerivXAt(f, coords)
 	}
 }
 
-func DerivateY(f func(coords model.Coordinates) float64) func(model.Coordinates) float64 {
-	return func(coords model.Coordinates) float64 {
+func DerivateY(f func(coords numeric.Coordinates) float64) func(numeric.Coordinates) float64 {
+	return func(coords numeric.Coordinates) float64 {
 		return DerivYAt(f, coords)
 	}
 }

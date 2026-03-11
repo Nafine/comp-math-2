@@ -1,13 +1,13 @@
 package algo
 
 import (
-	model "comp-math-2/internal"
 	"comp-math-2/internal/derivate"
+	"comp-math-2/internal/numeric"
 	"fmt"
 	"math"
 )
 
-func SolveNewton(eq model.NonlinearEquation) (model.Solution, error) {
+func SolveNewton(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 	f := eq.F
 	deriv := derivate.Derivate(f)
 	a := eq.A
@@ -25,7 +25,7 @@ func SolveNewton(eq model.NonlinearEquation) (model.Solution, error) {
 
 		fmt.Printf("%d & %.3f &  %.3f & %.3f & %.3f & %.3f\\\\ \n\\hline\n",
 			iterations, xPrev, f(xPrev), derivate.DerivAt(f, xPrev), x, math.Abs(x-xPrev))
-		
+
 		if math.Abs(x-xPrev) <= eps {
 			break
 		}
@@ -33,7 +33,7 @@ func SolveNewton(eq model.NonlinearEquation) (model.Solution, error) {
 		xPrev = x
 	}
 
-	return model.Solution{
+	return numeric.Solution{
 		X:          x,
 		Y:          f(x),
 		Iterations: iterations,

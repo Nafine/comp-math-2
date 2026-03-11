@@ -1,4 +1,6 @@
-package model
+package numeric
+
+import "fmt"
 
 type Solution struct {
 	X          float64
@@ -23,6 +25,10 @@ type NonlinearSystem struct {
 
 type Coordinates struct {
 	X, Y float64
+}
+
+func (s Solution) String() string {
+	return fmt.Sprintf("X: %f, Y: %f\nIterations: %d\n", s.X, s.Y, s.Iterations)
 }
 
 //func (eq NonlinearEquation) RootExists() bool {

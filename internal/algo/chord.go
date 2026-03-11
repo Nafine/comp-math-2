@@ -1,11 +1,11 @@
 package algo
 
 import (
-	model "comp-math-2/internal"
+	"comp-math-2/internal/numeric"
 	"math"
 )
 
-func SolveChord(eq model.NonlinearEquation) (model.Solution, error) {
+func SolveChord(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 	f := eq.F
 	a := eq.A
 	b := eq.B
@@ -32,7 +32,7 @@ func SolveChord(eq model.NonlinearEquation) (model.Solution, error) {
 		lastX = x
 	}
 
-	return model.Solution{
+	return numeric.Solution{
 		x,
 		f(x),
 		iterations,
