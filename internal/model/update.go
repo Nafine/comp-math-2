@@ -111,7 +111,7 @@ func (m *Model) updateSettings(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 					m.currentPhase = phaseError
 					return m, nil
 				}
-				m.solution = solution
+				m.systemSolution = solution
 			} else {
 				a, _ := strconv.ParseFloat(replaceComma(m.inputs[a].Value()), 64)
 				b, _ := strconv.ParseFloat(replaceComma(m.inputs[b].Value()), 64)
@@ -122,13 +122,13 @@ func (m *Model) updateSettings(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 					B:   b,
 					Eps: eps,
 				}
-				solution, err := algo.SolveNewton(eq)
+				solutions, err := algo.SolveAllSingle(eq)
 				if err != nil {
 					m.err = err
 					m.currentPhase = phaseError
 					return m, nil
 				}
-				m.solution = solution
+				m.singleSolutions = solutions
 			}
 			m.currentPhase = phaseSolution
 		}

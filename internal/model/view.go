@@ -91,9 +91,25 @@ func (m Model) renderSystemSettings(b *strings.Builder) {
 
 func (m Model) viewSolution(b *strings.Builder) {
 	b.WriteString(activeStyle.Render("Computing done:") + "\n")
-	output := fmt.Sprintf("Solution: %s\n", m.solution)
-	b.WriteString(resultStyle.Render(output) + "\n\n")
+
+	if m.isSystem {
+		m.renderSystemSolution(b)
+	} else {
+		m.renderSingleSolutions(b)
+	}
 	b.WriteString("Press [Enter] for restart")
+}
+
+func (m Model) renderSingleSolutions(b *strings.Builder) {
+	for _, solution := range m.singleSolutions {
+		output := fmt.Sprintf("Solution: %s\n", solution)
+		b.WriteString(output)
+	}
+}
+
+func (m Model) renderSystemSolution(b *strings.Builder) {
+	output := fmt.Sprintf("Solution: %s\n", m.systemSolution)
+	b.WriteString(resultStyle.Render(output) + "\n\n")
 }
 
 func (m Model) viewError(b *strings.Builder) {

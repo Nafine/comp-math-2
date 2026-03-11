@@ -32,5 +32,6 @@ func SolveSplitting(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 		X:          x,
 		Y:          f(x),
 		Iterations: iterations,
+		Method:     "Half Splitting",
 	}, nil
 }

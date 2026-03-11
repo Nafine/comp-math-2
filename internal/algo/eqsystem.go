@@ -21,6 +21,7 @@ func SolveSystem(eq numeric.NonlinearSystem) (numeric.Solution, error) {
 				X:          coords.X,
 				Y:          coords.Y,
 				Iterations: iter,
+				Method:     "Simple Iteration",
 			}, nil
 		}
 

@@ -46,8 +46,9 @@ type Model struct {
 	fieldErrors []string
 	focused     int
 
-	solution numeric.Solution
-	err      error
+	singleSolutions []numeric.Solution
+	systemSolution  numeric.Solution
+	err             error
 }
 
 func InitialModel() Model {

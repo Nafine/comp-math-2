@@ -6,6 +6,7 @@ type Solution struct {
 	X          float64
 	Y          float64
 	Iterations int
+	Method     string
 }
 
 type NonlinearEquation struct {
@@ -27,9 +28,5 @@ type Coordinates struct {
 }
 
 func (s Solution) String() string {
-	return fmt.Sprintf("X: %f, Y: %f\nIterations: %d\n", s.X, s.Y, s.Iterations)
+	return fmt.Sprintf("Method: %s\nX: %f, Y: %f\nIterations: %d\n", s.Method, s.X, s.Y, s.Iterations)
 }
-
-//func (eq NonlinearEquation) RootExists() bool {
-//	return eq.F(eq.A)*eq.F(eq.B) < 0 && derivate.DerivAt(eq.F, eq.A)*derivate.DerivAt(eq.F, eq.B) > 0
-//}
