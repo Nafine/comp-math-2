@@ -64,8 +64,8 @@ func InitialModel() Model {
 
 	return Model{
 		currentPhase: phaseBranch,
-		equations:    numeric.GetSingleEquations(),
-		systems:      numeric.GetSystems(),
+		equations:    numeric.GetFunctionNames(),
+		systems:      numeric.GetSystemNames(),
 		inputs:       ins,
 		fieldErrors:  make([]string, 5),
 	}

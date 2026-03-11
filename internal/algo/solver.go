@@ -15,7 +15,7 @@ var methods = []func(equation numeric.NonlinearEquation) (numeric.Solution, erro
 func SolveAllSingle(eq numeric.NonlinearEquation) ([]numeric.Solution, error) {
 	solutions := make([]numeric.Solution, 0)
 
-	if eq.F(eq.A)*eq.F(eq.B) < 0 && derivate.DerivAt(eq.F, eq.A)*derivate.DerivAt(eq.F, eq.B) > 0 {
+	if !(rootExists(eq)) {
 		return nil, errors.New("function has no root in the given interval")
 	}
 
@@ -29,4 +29,8 @@ func SolveAllSingle(eq numeric.NonlinearEquation) ([]numeric.Solution, error) {
 	}
 
 	return solutions, nil
+}
+
+func rootExists(eq numeric.NonlinearEquation) bool {
+	return eq.F(eq.A)*eq.F(eq.B) < 0 && derivate.DerivAt(eq.F, eq.A)*derivate.DerivAt(eq.F, eq.B) > 0
 }

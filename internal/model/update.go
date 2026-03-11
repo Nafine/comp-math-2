@@ -93,11 +93,11 @@ func (m *Model) updateSettings(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 				x0, _ := strconv.ParseFloat(replaceComma(m.inputs[x0].Value()), 64)
 				y0, _ := strconv.ParseFloat(replaceComma(m.inputs[y0].Value()), 64)
 
-				f1, f2 := numeric.GetSystem(m.systems[m.selectedEqIndex])
+				namedSystem := numeric.GetSystem(m.selectedEqIndex)
 
 				system := numeric.NonlinearSystem{
-					F1: f1,
-					F2: f2,
+					F1: namedSystem.F1,
+					F2: namedSystem.F2,
 					StartCoordinates: numeric.Coordinates{
 						X: x0,
 						Y: y0,
@@ -117,7 +117,7 @@ func (m *Model) updateSettings(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 				b, _ := strconv.ParseFloat(replaceComma(m.inputs[b].Value()), 64)
 
 				eq := numeric.NonlinearEquation{
-					F:   numeric.GetEquation(m.equations[m.selectedEqIndex]),
+					F:   numeric.GetFunction(m.selectedEqIndex).Fn,
 					A:   a,
 					B:   b,
 					Eps: eps,
