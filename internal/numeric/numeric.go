@@ -1,12 +1,14 @@
 package numeric
 
-import "fmt"
-
 type Solution struct {
+	X          float64
+	Iterations int
+}
+
+type SystemSolution struct {
 	X          float64
 	Y          float64
 	Iterations int
-	Method     string
 }
 
 type NonlinearEquation struct {
@@ -25,8 +27,4 @@ type NonlinearSystem struct {
 
 type Coordinates struct {
 	X, Y float64
-}
-
-func (s Solution) String() string {
-	return fmt.Sprintf("Method: %s\nX: %f, Y: %f\nIterations: %d\n", s.Method, s.X, s.Y, s.Iterations)
 }

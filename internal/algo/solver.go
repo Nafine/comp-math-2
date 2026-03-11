@@ -6,29 +6,18 @@ import (
 	"errors"
 )
 
-var methods = []func(equation numeric.NonlinearEquation) (numeric.Solution, error){
-	SolveChord,
-	SolveSplitting,
-	SolveSimpleIteration,
+var methods = map[string]func(equation numeric.NonlinearEquation) (numeric.Solution, error){
+	"chord":     SolveChord,
+	"secant":    SolveSecant,
+	"iteration": SolveSimpleIteration,
 }
 
-func SolveAllSingle(eq numeric.NonlinearEquation) ([]numeric.Solution, error) {
-	solutions := make([]numeric.Solution, 0)
-
-	if !(rootExists(eq)) {
-		return nil, errors.New("function has no root in the given interval")
+func SolveSingle(method string, eq numeric.NonlinearEquation) (numeric.Solution, error) {
+	if !rootExists(eq) {
+		return numeric.Solution{}, errors.New("no roots exists on the given interval")
 	}
 
-	for _, method := range methods {
-		solution, err := method(eq)
-
-		if err != nil {
-			return nil, err
-		}
-		solutions = append(solutions, solution)
-	}
-
-	return solutions, nil
+	return methods[method](eq)
 }
 
 func rootExists(eq numeric.NonlinearEquation) bool {

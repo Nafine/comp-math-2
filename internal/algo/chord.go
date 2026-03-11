@@ -34,8 +34,6 @@ func SolveChord(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 
 	return numeric.Solution{
 		X:          x,
-		Y:          f(x),
 		Iterations: iterations,
-		Method:     "Chord",
 	}, nil
 }

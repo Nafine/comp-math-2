@@ -7,7 +7,7 @@ import (
 	"math"
 )
 
-func SolveSystem(eq numeric.NonlinearSystem) (numeric.Solution, error) {
+func SolveSystem(eq numeric.NonlinearSystem) (numeric.SystemSolution, error) {
 	coords := numeric.Coordinates{X: eq.StartCoordinates.X, Y: eq.StartCoordinates.Y}
 	maxIter := 1000
 
@@ -17,11 +17,10 @@ func SolveSystem(eq numeric.NonlinearSystem) (numeric.Solution, error) {
 
 		// Проверка на сходимость
 		if math.Abs(f1) < eq.Eps && math.Abs(f2) < eq.Eps {
-			return numeric.Solution{
+			return numeric.SystemSolution{
 				X:          coords.X,
 				Y:          coords.Y,
 				Iterations: iter,
-				Method:     "Newton",
 			}, nil
 		}
 
@@ -33,7 +32,7 @@ func SolveSystem(eq numeric.NonlinearSystem) (numeric.Solution, error) {
 		det := J11*J22 - J12*J21
 
 		if math.Abs(det) < 1e-12 {
-			return numeric.Solution{}, fmt.Errorf("якобиан вырожден в точке (%f, %f)", coords.X, coords.Y)
+			return numeric.SystemSolution{}, fmt.Errorf("якобиан вырожден в точке (%f, %f)", coords.X, coords.Y)
 		}
 
 		deltaX := -(f1*J22 - f2*J12) / det
@@ -43,5 +42,5 @@ func SolveSystem(eq numeric.NonlinearSystem) (numeric.Solution, error) {
 		coords.Y += deltaY
 	}
 
-	return numeric.Solution{}, fmt.Errorf("достигнуто максимальное число итераций")
+	return numeric.SystemSolution{}, fmt.Errorf("достигнуто максимальное число итераций")
 }

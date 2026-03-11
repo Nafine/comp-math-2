@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func SolveSplitting(eq numeric.NonlinearEquation) (numeric.Solution, error) {
+func SolveSecant(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 	f := eq.F
 	a := eq.A
 	b := eq.B
@@ -30,8 +30,6 @@ func SolveSplitting(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 
 	return numeric.Solution{
 		X:          x,
-		Y:          f(x),
 		Iterations: iterations,
-		Method:     "Half Splitting",
 	}, nil
 }
