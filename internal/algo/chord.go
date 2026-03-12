@@ -17,7 +17,7 @@ func SolveChord(eq numeric.NonlinearEquation) (numeric.Solution, error) {
 	lastX := x
 
 	for i := 1; i <= 10_000; i++ {
-		if f(a)*f(b) < 0 {
+		if f(a)*f(x) < 0 {
 			b = x
 		} else {
 			a = x

@@ -8,7 +8,7 @@ import (
 )
 
 func SolveSimpleIteration(eq numeric.NonlinearEquation) (numeric.Solution, error) {
-	steps := 100
+	steps := 1000
 	maxIters := 50_000
 
 	f := eq.F
@@ -28,7 +28,7 @@ func SolveSimpleIteration(eq numeric.NonlinearEquation) (numeric.Solution, error
 	for i := 1; i <= steps; i++ {
 		if math.Abs(derivate.DerivAt(phi, eq.A+(eq.B-eq.A)/float64(steps)*float64(i))) >= 1 {
 			return numeric.Solution{},
-				fmt.Errorf("не выполнено условие сходимости метода |phi'(x)| < 1 при x = %f", x)
+				fmt.Errorf("convergence condition failed: |phi'(x)| < 1 at x = %f", x)
 		}
 	}
 
